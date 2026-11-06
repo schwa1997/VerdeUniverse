@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Verde's art: a painter's palette with a leaf among the paint -->
+  <circle cx="32" cy="32" r="30" fill="#1f6b45"/>
+  <g fill="none" stroke="#f6faef" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 13 C20 13 12 22 12 32 C12 43 21 51 31 51 C35 51 37 48.5 36 45.5 C35 42 37 39 41 39 H45 C49 39 52 36.5 52 32 C52 21 43 13 32 13 Z"/>
+    <path d="M34 29 C34 24 37.5 20.5 43 20 C43.3 25.5 39.5 29 34 29 Z"/>
+  </g>
+  <g fill="#f6faef">
+    <circle cx="23" cy="25" r="2.6"/>
+    <circle cx="20.5" cy="35" r="2.6"/>
+    <circle cx="28" cy="43" r="2.6"/>
+  </g>
+</svg>

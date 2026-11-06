@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Verde mark: a monoline V made of two leaves sweeping up and out like wings -->
+  <circle cx="32" cy="32" r="30" fill="#1f6b45"/>
+  <g fill="none" stroke="#f6faef" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 48 C27 36 18 25 8 18 C20 18.5 29 30 32 48 Z"/>
+    <path d="M32 48 C37 36 46 25 56 18 C44 18.5 35 30 32 48 Z"/>
+  </g>
+</svg>

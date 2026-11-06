@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f6faef;
+  --sheet: #ffffff;
+  --sprout: #e6f2d9;
+  --ink: #17402b;
+  --ink-soft: #4d6b58;
+  --pine: #1f6b45;
+  --forest: #2f7d4a;
+  --leaf: #8dbf5a;
+  --lime: #b5e48c;
+  --sun: #f7c46c;
+  --blush: #ffc4e1;
+  --line: rgb(47 125 74 / 0.28);
+  --on-pine: #f6faef;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1a17;
+    --sheet: #132019;
+    --sprout: #1c3a29;
+    --ink: #e6f2d9;
+    --ink-soft: #a9c6ae;
+    --pine: #b5e48c;
+    --forest: #8dbf5a;
+    --line: rgb(181 228 140 / 0.24);
+    --on-pine: #132019;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-sprout: var(--sprout);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-pine: var(--pine);
+  --color-forest: var(--forest);
+  --color-leaf: var(--leaf);
+  --color-lime: var(--lime);
+  --color-line: var(--line);
+  --color-on-pine: var(--on-pine);
+  --font-display: var(--font-display), "Noto Serif SC", "Songti SC", serif;
+  --font-body: var(--font-body), "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.02em;
+}
+
+/* The small caption over each section, like the plate numbers in an atlas */
+.plate {
+  color: var(--forest);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* --- Opening: the words rise one after another --- */
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+/* --- Scroll reveals --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- The atlas --- */
+.atlas-far,
+.atlas-near {
+  transition: transform 0.5s ease-out;
+}
+
+.atlas-far {
+  transform: translate(calc(var(--px, 0) * -10px), calc(var(--py, 0) * -10px));
+}
+
+.atlas-near {
+  transform: translate(calc(var(--px, 0) * 16px), calc(var(--py, 0) * 16px));
+}
+
+.orbit {
+  animation: spin linear infinite;
+  transform-origin: 320px 320px;
+}
+
+.counter {
+  animation: spin linear infinite reverse;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.planet:hover circle {
+  stroke: var(--leaf);
+}
+
+/* --- Ribbon --- */
+.ribbon-track {
+  animation: ribbon 34s linear infinite;
+}
+
+@keyframes ribbon {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .orbit,
+  .counter,
+  .twinkle,
+  .ribbon-track {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .atlas-far,
+  .atlas-near {
+    transform: none;
+  }
+}

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VerdeSnap film</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..700,100,1;1,9..144,500..700,100,1&family=Hanken+Grotesk:wght@400;600;700&display=block" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; }
+  body { position: relative; background: #f6faef; color: #17402b; font-family: "Hanken Grotesk", "Microsoft YaHei", sans-serif; }
+  .display { font-family: "Fraunces", "Noto Serif SC", "SimSun", serif; letter-spacing: -0.02em; }
+  .abs { position: absolute; }
+  #rings { position: absolute; inset: 0; }
+  #title, #end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  #title img, #end img { width: 148px; height: 148px; filter: drop-shadow(0 18px 26px rgb(31 107 69 / 0.28)); }
+  #title h1 { margin-top: 26px; font-size: 104px; line-height: 1; color: #1f6b45; font-weight: 600; }
+  #title p { margin-top: 16px; font-size: 27px; color: #4d6b58; }
+  #win { position: absolute; left: 190px; top: 74px; width: 900px; height: 500px; border-radius: 22px; background: #fff; border: 1px solid rgb(47 125 74 / 0.22); box-shadow: 0 34px 60px -34px rgb(31 107 69 / 0.55); overflow: hidden; }
+  #bar-top { display: flex; gap: 8px; align-items: center; height: 44px; padding: 0 18px; border-bottom: 1px solid rgb(47 125 74 / 0.16); }
+  #bar-top i { width: 13px; height: 13px; border-radius: 50%; }
+  #sentence { position: absolute; left: 62px; top: 96px; font-size: 45px; line-height: 1.15; color: #17402b; white-space: nowrap; font-weight: 500; }
+  .line { position: absolute; left: 62px; height: 12px; border-radius: 12px; background: #e6f2d9; }
+  #sel { position: absolute; left: 42px; top: 80px; border: 3px dashed #2f7d4a; border-radius: 10px; background: rgb(181 228 140 / 0.16); }
+  #mark { position: absolute; left: 0; top: 0; width: 900px; height: 500px; pointer-events: none; }
+  #tools { position: absolute; left: 44px; top: 178px; display: flex; gap: 6px; padding: 7px; border-radius: 999px; background: #1f6b45; color: #f6faef; font-size: 18px; font-weight: 700; }
+  #tools span { padding: 6px 15px; border-radius: 999px; }
+  #read, #trans { position: absolute; left: 44px; right: 44px; border-radius: 15px; padding: 15px 22px; font-size: 26px; }
+  #read { top: 262px; background: #e6f2d9; color: #17402b; }
+  #trans { top: 342px; background: #1f6b45; color: #f6faef; font-weight: 700; font-size: 31px; }
+  #key { position: absolute; left: 950px; top: 24px; padding: 11px 22px; border-radius: 15px; background: #fff; border: 1px solid rgb(47 125 74 / 0.3); box-shadow: 0 6px 0 rgb(47 125 74 / 0.32); color: #1f6b45; font-size: 29px; font-weight: 700; }
+  #cursor { position: absolute; left: 0; top: 0; width: 34px; height: 34px; filter: drop-shadow(0 3px 4px rgb(23 64 43 / 0.35)); }
+  #steps { position: absolute; left: 0; right: 0; bottom: 42px; display: flex; justify-content: center; gap: 12px; font-size: 22px; font-weight: 700; }
+  #steps span { padding: 8px 24px; border-radius: 999px; color: #4d6b58; background: #e6f2d9; }
+  #end h2 { margin-top: 24px; font-size: 66px; line-height: 1.05; color: #1f6b45; font-weight: 600; }
+  #end p { margin-top: 16px; font-size: 27px; color: #4d6b58; }
+  #end b { display: inline-block; margin-top: 24px; padding: 13px 28px; border-radius: 999px; background: #1f6b45; color: #f6faef; font-size: 27px; }
+</style>
+</head>
+<body>
+  <svg id="rings" viewBox="0 0 1280 720" fill="none" stroke="rgb(47 125 74 / 0.16)">
+    <g id="ringset">
+      <circle cx="640" cy="360" r="210" stroke-dasharray="3 8"/>
+      <circle cx="640" cy="360" r="330" stroke-dasharray="3 8"/>
+      <circle cx="640" cy="360" r="470" stroke-dasharray="3 8"/>
+      <circle cx="640" cy="360" r="620"/>
+    </g>
+  </svg>
+
+  <div id="title">
+    <img src="icon.svg" alt="">
+    <h1 class="display">VerdeSnap</h1>
+    <p>My first tool, made by me ✧</p>
+  </div>
+
+  <div id="win">
+    <div id="bar-top"><i style="background:#b5e48c"></i><i style="background:#8dbf5a"></i><i style="background:#2f7d4a"></i></div>
+    <div id="sentence" class="display">Los días pequeños también cuentan.</div>
+    <div class="line" style="top:184px;width:690px"></div>
+    <div class="line" style="top:212px;width:560px"></div>
+    <div class="line" style="top:240px;width:620px"></div>
+    <div id="sel"></div>
+    <svg id="mark" viewBox="0 0 900 500" fill="none"><path id="scribble" stroke="#f28c6b" stroke-width="5" stroke-linecap="round"/></svg>
+    <div id="tools"><span id="t-mark">✎ Mark</span><span id="t-read">Aa Read</span><span id="t-trans">文 Translate</span></div>
+    <div id="read">Los días pequeños también cuentan.</div>
+    <div id="trans">小小的日子也算数 ✧</div>
+  </div>
+
+  <div id="key">Alt + A</div>
+  <svg id="cursor" viewBox="0 0 24 24"><path d="M4 2 L4 20 L9 15.5 L12.4 22 L15.6 20.4 L12.2 14 L19 14 Z" fill="#17402b" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+
+  <div id="steps"><span id="s0">Snip</span><span id="s1">Mark</span><span id="s2">Read</span><span id="s3">Translate</span></div>
+
+  <div id="end">
+    <img src="icon.svg" alt="">
+    <h2 class="display">Little tools for<br>a little green life.</h2>
+    <p>VerdeSnap for Windows</p>
+    <b>github.com/schwa1997/verdeSnap</b>
+  </div>
+
+<script>
+  // The whole film is one pure function of time, so every frame can be rendered exactly
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const span = (t, a, b) => clamp((t - a) / (b - a));
+  const ease = (x) => 1 - Math.pow(1 - x, 3);
+  const inOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const back = (x) => 1 + 2.7 * Math.pow(x - 1, 3) + 1.7 * Math.pow(x - 1, 2);
+  const lerp = (a, b, x) => a + (b - a) * x;
+
+  const scribble = $("scribble");
+  scribble.setAttribute("d", "M268 150 C330 158 400 146 462 152");
+  const scribbleLength = scribble.getTotalLength();
+
+  // Where the cursor rests, in page pixels: [time, x, y]
+  const path = [
+    [3.2, 1000, 620], [3.7, 236, 158], [4.9, 1048, 246], [5.5, 1048, 246],
+    [5.9, 300, 285], [6.15, 455, 226], [7.05, 455, 226], [7.5, 345, 285],
+    [8.35, 345, 285], [8.85, 480, 285], [11, 480, 285],
+  ];
+  function cursorAt(t) {
+    for (let i = 0; i < path.length - 1; i++) {
+      const [ta, xa, ya] = path[i];
+      const [tb, xb, yb] = path[i + 1];
+      if (t <= tb) {
+        const x = inOut(span(t, ta, tb));
+        return [lerp(xa, xb, x), lerp(ya, yb, x)];
+      }
+    }
+    return path[path.length - 1].slice(1);
+  }
+
+  function pop(el, t, at, out = 99) {
+    const x = back(span(t, at, at + 0.35));
+    const o = span(t, at, at + 0.18) * (1 - span(t, out, out + 0.3));
+    el.style.opacity = o;
+    el.style.transform = `translateY(${(1 - x) * 18}px) scale(${lerp(0.94, 1, x)})`;
+  }
+
+  window.renderFrame = (t) => {
+    $("ringset").setAttribute("transform", `rotate(${t * 2.2} 640 360)`);
+
+    const inTitle = ease(span(t, 0.1, 0.9));
+    const outTitle = span(t, 2.4, 2.8);
+    $("title").style.opacity = inTitle * (1 - outTitle);
+    $("title").style.transform = `translateY(${(1 - inTitle) * 26 - outTitle * 26}px) scale(${lerp(0.96, 1, inTitle)})`;
+
+    const scene = ease(span(t, 2.7, 3.15)) * (1 - span(t, 11.1, 11.5));
+    $("win").style.opacity = scene;
+    $("win").style.transform = `translateY(${(1 - ease(span(t, 2.7, 3.15))) * 34}px)`;
+    $("steps").style.opacity = scene;
+
+    // Alt + A goes down, and the snip begins
+    const pressed = span(t, 3.2, 3.32) * (1 - span(t, 3.32, 3.5));
+    $("key").style.opacity = span(t, 2.95, 3.15) * (1 - span(t, 3.9, 4.2));
+    $("key").style.transform = `translateY(${pressed * 5}px)`;
+    $("key").style.boxShadow = `0 ${6 - pressed * 5}px 0 rgb(47 125 74 / 0.32)`;
+
+    const drag = inOut(span(t, 3.75, 4.85));
+    $("sel").style.opacity = t > 3.72 ? scene : 0;
+    $("sel").style.width = `${lerp(0, 816, drag)}px`;
+    $("sel").style.height = `${lerp(0, 88, drag)}px`;
+
+    pop($("tools"), t, 4.95);
+
+    // Mark: a coral line under "pequeños"
+    const drawn = inOut(span(t, 6.15, 7.0));
+    scribble.style.strokeDasharray = scribbleLength;
+    scribble.style.strokeDashoffset = scribbleLength * (1 - drawn);
+    scribble.style.opacity = drawn > 0 ? 1 : 0;
+
+    pop($("read"), t, 7.65);
+    pop($("trans"), t, 9.0);
+
+    const tool = (id, a, b) => {
+      $(id).style.background = t >= a && t < b ? "rgb(181 228 140 / 0.3)" : "transparent";
+    };
+    tool("t-mark", 5.8, 7.1);
+    tool("t-read", 7.4, 8.3);
+    tool("t-trans", 8.75, 9.8);
+
+    const [cx, cy] = cursorAt(t);
+    $("cursor").style.opacity = span(t, 3.15, 3.35) * (1 - span(t, 10.1, 10.4));
+    $("cursor").style.transform = `translate(${cx}px, ${cy}px)`;
+
+    const active = t < 3.2 ? -1 : t < 5.7 ? 0 : t < 7.3 ? 1 : t < 8.7 ? 2 : 3;
+    for (let i = 0; i < 4; i++) {
+      $(`s${i}`).style.background = i === active ? "#1f6b45" : "#e6f2d9";
+      $(`s${i}`).style.color = i === active ? "#f6faef" : "#4d6b58";
+    }
+
+    const inEnd = ease(span(t, 11.4, 12.1));
+    $("end").style.opacity = inEnd;
+    $("end").style.transform = `translateY(${(1 - inEnd) * 26}px)`;
+  };
+
+  window.ready = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode()))).then(() => renderFrame(0));
+</script>
+</body>
+</html>
