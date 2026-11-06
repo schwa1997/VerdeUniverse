@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
         env:
           # Remove this line if the site moves to its own domain
-          NEXT_PUBLIC_BASE_PATH: /verdeuniverse
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
